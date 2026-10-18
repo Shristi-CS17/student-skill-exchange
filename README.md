@@ -61,3 +61,5 @@ If Student A wants to learn a skill and Student B can teach that skill,
 Student B is suggested as a match.
 
 This makes the system easy to explain in an academic viva and leaves scope for future improvement using a matching score or machine learning.
+# student-skill-exchange
+A Student Skill Exchange Platform built using Python Flask and SQLite
