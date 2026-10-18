@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Review Session | SkillXchange{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card">
+<div class="text-center mb-4"><div class="auth-logo"><i class="bi bi-star"></i></div><h2>Rate your session</h2><p class="text-muted">Your feedback helps build trust in the student community.</p></div>
+<div class="text-center bg-light rounded-3 p-3 mb-4"><strong>{{session.skill}}</strong><div class="small text-muted">{{session.learner}} ↔ {{session.teacher}}</div></div>
+<form method="post"><label class="form-label">Rating</label><select class="form-select form-select-lg mb-3" name="rating" required><option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Very Good</option><option value="3">★★★☆☆ — Good</option><option value="2">★★☆☆☆ — Needs Improvement</option><option value="1">★☆☆☆☆ — Poor</option></select><label class="form-label">Review</label><textarea class="form-control" name="comment" rows="4" placeholder="Share your learning experience..."></textarea><button class="btn btn-primary btn-lg w-100 mt-4">Submit Review</button></form>
+</div></div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Skills | Admin{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">ADMIN · SKILLS</span><h1>Skill Directory</h1><p>Skills available across the platform.</p></div><div class="panel table-responsive"><table class="table align-middle"><thead><tr><th>Skill</th><th>Category</th><th>Students Using Skill</th></tr></thead><tbody>{% for s in skills %}<tr><td><strong>{{s.name}}</strong></td><td><span class="skill-pill">{{s.category}}</span></td><td>{{s.users_count}}</td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

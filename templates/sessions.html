@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Sessions | SkillXchange{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">SESSION SCHEDULING</span><h1>Learning Sessions</h1><p>Schedule a session after a learning request has been accepted.</p></div>
+{% if accepted %}<div class="panel mb-4"><div class="panel-head"><div><h5>Schedule a Session</h5><p>Select an accepted request.</p></div></div>
+<form method="post"><div class="row g-3 align-items-end"><div class="col-lg-5"><label class="form-label">Accepted Request</label><select class="form-select" name="request_id" required>{% for r in accepted %}<option value="{{r.id}}">{{r.skill}} · {{r.learner}} ↔ {{r.teacher}}</option>{% endfor %}</select></div><div class="col-md-3 col-lg-3"><label class="form-label">Date</label><input class="form-control" type="date" name="session_date" required></div><div class="col-md-3 col-lg-2"><label class="form-label">Time</label><input class="form-control" type="time" name="session_time" required></div><div class="col-md-3 col-lg-2"><button class="btn btn-primary w-100">Schedule</button></div></div></form></div>{% endif %}
+<div class="panel"><div class="panel-head"><div><h5>Upcoming & Past Sessions</h5><p>Your learning activity.</p></div></div>
+{% for s in upcoming %}<div class="session-row"><div class="date-box"><strong>{{s.session_date[8:10]}}</strong><small>{{s.session_date[5:7]}}/{{s.session_date[0:4]}}</small></div><div class="flex-grow-1"><strong>{{s.skill}}</strong><div class="small text-muted">{% if session.user_id==s.learner_id %}Teacher: {{s.teacher}}{% else %}Learner: {{s.learner}}{% endif %} · {{s.session_time}}</div></div><span class="status scheduled">{{s.status}}</span>{% if s.status=='Scheduled' %}<a class="btn btn-sm btn-outline-dark ms-2" href="{{url_for('review',session_id=s.id)}}">Complete & Review</a>{% endif %}</div>{% else %}<div class="empty-mini">No sessions scheduled yet.</div>{% endfor %}
+</div></div>
+{% endblock %}

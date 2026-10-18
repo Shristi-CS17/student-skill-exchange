@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Requests | SkillXchange{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">LEARNING REQUESTS</span><h1>Requests</h1><p>Manage incoming requests and track the requests you have sent.</p></div>
+<div class="row g-4">
+<div class="col-lg-6"><div class="panel"><div class="panel-head"><div><h5>Incoming Requests</h5><p>Students who want to learn from you.</p></div></div>
+{% for r in incoming %}<div class="request-row"><div class="avatar">{{r.learner[:1]}}</div><div class="flex-grow-1"><strong>{{r.learner}}</strong><div class="small text-muted">wants to learn <strong>{{r.skill}}</strong></div><span class="status {{r.status|lower}}">{{r.status}}</span></div>{% if r.status=='Pending' %}<div class="d-flex gap-1"><form method="post" action="{{url_for('update_request',request_id=r.id,action='accept')}}"><button class="btn btn-sm btn-success">Accept</button></form><form method="post" action="{{url_for('update_request',request_id=r.id,action='reject')}}"><button class="btn btn-sm btn-outline-danger">Reject</button></form></div>{% endif %}</div>{% else %}<div class="empty-mini">No incoming requests.</div>{% endfor %}
+</div></div>
+<div class="col-lg-6"><div class="panel"><div class="panel-head"><div><h5>Sent Requests</h5><p>Track your learning requests.</p></div></div>
+{% for r in outgoing %}<div class="request-row"><div class="avatar">{{r.teacher[:1]}}</div><div class="flex-grow-1"><strong>{{r.teacher}}</strong><div class="small text-muted">Learning: <strong>{{r.skill}}</strong></div></div><span class="status {{r.status|lower}}">{{r.status}}</span></div>{% else %}<div class="empty-mini">No sent requests yet.</div>{% endfor %}
+</div></div></div></div>
+{% endblock %}

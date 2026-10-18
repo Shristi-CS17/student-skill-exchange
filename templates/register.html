@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Register | SkillXchange{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card wide">
+<div class="mb-4"><span class="eyebrow">JOIN THE COMMUNITY</span><h2>Create your account</h2><p class="text-muted">Build your student profile and exchange skills with peers.</p></div>
+<form method="post">
+<div class="row g-3">
+<div class="col-md-6"><label class="form-label">Full Name *</label><input class="form-control" name="name" required></div>
+<div class="col-md-6"><label class="form-label">Email *</label><input class="form-control" type="email" name="email" required></div>
+<div class="col-md-6"><label class="form-label">Password *</label><input class="form-control" type="password" name="password" minlength="6" required></div>
+<div class="col-md-6"><label class="form-label">Department *</label><select class="form-select" name="department" required><option value="">Select</option><option>CSE</option><option>IT</option><option>ECE</option><option>EEE</option><option>BBA</option><option>MBA</option><option>Other</option></select></div>
+<div class="col-md-6"><label class="form-label">Year *</label><select class="form-select" name="year" required><option value="">Select</option><option value="1">1st Year</option><option value="2">2nd Year</option><option value="3">3rd Year</option><option value="4">4th Year</option></select></div>
+</div>
+<button class="btn btn-primary btn-lg mt-4 px-4">Create Account</button>
+</form>
+<p class="text-center mt-4 mb-0">Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+</div></div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}SkillXchange | Learn. Teach. Grow.{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container py-5">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-7">
+        <span class="eyebrow">STUDENT SKILL EXCHANGE PLATFORM</span>
+        <h1>Learn from students.<br><span class="text-gradient">Share what you know.</span></h1>
+        <p class="hero-copy">A peer-to-peer platform that connects students who can teach with students who want to learn — within their own academic community.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4">Get Started <i class="bi bi-arrow-right"></i></a>
+          <a href="{{ url_for('login') }}" class="btn btn-outline-dark btn-lg px-4">Login</a>
+        </div>
+        <div class="mini-stats mt-5">
+          <div><strong>Peer</strong><span>Learning</span></div>
+          <div><strong>Smart</strong><span>Matching</span></div>
+          <div><strong>Trusted</strong><span>Reviews</span></div>
+        </div>
+      </div>
+      <div class="col-lg-5 mt-5 mt-lg-0">
+        <div class="hero-card">
+          <div class="floating-icon"><i class="bi bi-arrow-left-right"></i></div>
+          <h5>Skill Match Found</h5>
+          <p class="text-muted small">Based on your learning goals</p>
+          <div class="match-person">
+            <div class="avatar">RV</div>
+            <div><strong>Rahul Verma</strong><div class="small text-muted">CSE · 3rd Year</div></div>
+            <span class="match-score">Strong</span>
+          </div>
+          <div class="skill-pair"><span>Python</span><i class="bi bi-arrow-left-right"></i><span>JavaScript</span></div>
+          <button class="btn btn-dark w-100 mt-3">Request to Learn</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container py-5">
+  <div class="text-center mb-5"><span class="eyebrow">HOW IT WORKS</span><h2>Simple. Useful. Student-focused.</h2></div>
+  <div class="row g-4">
+    <div class="col-md-4"><div class="feature-card"><div class="feature-icon"><i class="bi bi-person-plus"></i></div><h5>1. Create your profile</h5><p>Tell the platform your department, year, availability and skills.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><div class="feature-icon"><i class="bi bi-stars"></i></div><h5>2. Find skill matches</h5><p>Get students who can teach the skills you want to learn.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><div class="feature-icon"><i class="bi bi-calendar-check"></i></div><h5>3. Learn & review</h5><p>Send requests, schedule sessions and build a learning reputation.</p></div></div>
+  </div>
+</section>
+{% endblock %}

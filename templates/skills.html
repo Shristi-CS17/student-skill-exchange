@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}My Skills | SkillXchange{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">SKILLS</span><h1>Build your skill profile</h1><p>Select multiple skills you can teach and skills you want to learn.</p></div>
+<form method="post">
+<div class="row g-4">
+<div class="col-lg-6"><div class="panel"><div class="panel-head"><div><h5><i class="bi bi-mortarboard text-primary"></i> Skills I Can Teach</h5><p>Skills you are comfortable sharing.</p></div></div>
+{% for category in ['Programming','Web Development','Database','Data & Analytics','Business','Finance','Soft Skills','Design','Creative','Tools'] %}
+{% set cat=skills|selectattr('category','equalto',category)|list %}
+{% if cat %}<div class="skill-category"><small>{{category}}</small><div class="row">{% for s in cat %}<div class="col-sm-6"><label class="check-skill"><input type="checkbox" name="teach" value="{{s.id}}" {% if s.id in teach %}checked{% endif %}><span>{{s.name}}</span></label></div>{% endfor %}</div></div>{% endif %}
+{% endfor %}
+</div></div>
+<div class="col-lg-6"><div class="panel"><div class="panel-head"><div><h5><i class="bi bi-lightbulb text-warning"></i> Skills I Want to Learn</h5><p>Your learning goals.</p></div></div>
+{% for category in ['Programming','Web Development','Database','Data & Analytics','Business','Finance','Soft Skills','Design','Creative','Tools'] %}
+{% set cat=skills|selectattr('category','equalto',category)|list %}
+{% if cat %}<div class="skill-category"><small>{{category}}</small><div class="row">{% for s in cat %}<div class="col-sm-6"><label class="check-skill"><input type="checkbox" name="learn" value="{{s.id}}" {% if s.id in learn %}checked{% endif %}><span>{{s.name}}</span></label></div>{% endfor %}</div></div>{% endif %}
+{% endfor %}
+</div></div>
+</div><div class="text-center mt-4"><button class="btn btn-primary btn-lg px-5">Save My Skills</button></div>
+</form></div>
+{% endblock %}

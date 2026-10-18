@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | SkillXchange{% endblock %}
+{% block content %}
+<div class="container dashboard-wrap py-4 py-lg-5">
+  <section class="dashboard-welcome mb-4">
+    <div class="welcome-copy">
+      <span class="welcome-kicker"><i class="bi bi-stars me-1"></i> YOUR LEARNING SPACE</span>
+      <h1>Welcome back, {{ user.name.split()[0] }}!</h1>
+      <p>Keep sharing what you know and discover what you can learn next.</p>
+      <div class="welcome-meta">
+        <span><i class="bi bi-mortarboard me-1"></i>{{ user.department }}</span>
+        <span class="meta-dot"></span>
+        <span>{{ user.year }}{{ 'st' if user.year==1 else 'nd' if user.year==2 else 'rd' if user.year==3 else 'th' }} Year</span>
+      </div>
+      <a class="btn btn-light welcome-cta" href="{{ url_for('matches') }}">Explore skill matches <i class="bi bi-arrow-up-right ms-2"></i></a>
+    </div>
+    <div class="welcome-art" aria-hidden="true">
+      <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+      <div class="art-icon art-icon-main"><i class="bi bi-lightbulb-fill"></i></div>
+      <div class="art-icon art-icon-small art-icon-left"><i class="bi bi-code-slash"></i></div>
+      <div class="art-icon art-icon-small art-icon-right"><i class="bi bi-people-fill"></i></div>
+      <span class="art-caption">Learn together. Grow together.</span>
+    </div>
+  </section>
+
+  <div class="dashboard-section-heading d-flex justify-content-between align-items-end flex-wrap gap-2 mb-3">
+    <div><span class="eyebrow">AT A GLANCE</span><h2>My learning overview</h2></div>
+    <a class="text-link" href="{{ url_for('profile') }}">Manage profile <i class="bi bi-arrow-right ms-1"></i></a>
+  </div>
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-xl-3"><div class="overview-card overview-purple"><div class="overview-top"><span>Skills I teach</span><span class="overview-icon"><i class="bi bi-mortarboard"></i></span></div><div class="overview-number">{{ teach|length }}</div><div class="overview-foot">Skills you can share</div></div></div>
+    <div class="col-6 col-xl-3"><div class="overview-card overview-blue"><div class="overview-top"><span>Skills to learn</span><span class="overview-icon"><i class="bi bi-lightbulb"></i></span></div><div class="overview-number">{{ learn|length }}</div><div class="overview-foot">Goals you are working toward</div></div></div>
+    <div class="col-6 col-xl-3"><div class="overview-card overview-amber"><div class="overview-top"><span>Pending requests</span><span class="overview-icon"><i class="bi bi-send"></i></span></div><div class="overview-number">{{ pending }}</div><div class="overview-foot">Requests needing attention</div></div></div>
+    <div class="col-6 col-xl-3"><div class="overview-card overview-green"><div class="overview-top"><span>My rating</span><span class="overview-icon"><i class="bi bi-star"></i></span></div><div class="overview-number">{{ rating }} <small class="rating-star">★</small></div><div class="overview-foot">Your learning community feedback</div></div></div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <section class="dashboard-panel h-100">
+        <div class="section-title-row"><div><span class="eyebrow">YOUR SKILLS</span><h3>My skill snapshot</h3><p>A quick look at what you share and what you want to learn.</p></div><a class="icon-action" href="{{ url_for('skills') }}" aria-label="Edit skills"><i class="bi bi-pencil-square"></i></a></div>
+        <div class="snapshot-block">
+          <div class="snapshot-label"><span class="snapshot-dot teach-dot"></span><span>Skills I can teach</span><span class="snapshot-count">{{ teach|length }}</span></div>
+          <div class="snapshot-pills mt-3">{% for s in teach %}<span class="skill-pill teach">{{ s.name }}</span>{% else %}<div class="snapshot-empty"><i class="bi bi-plus-circle me-2"></i>No teaching skills added yet. Add a skill you feel confident sharing.</div>{% endfor %}</div>
+        </div>
+        <div class="snapshot-divider"></div>
+        <div class="snapshot-block">
+          <div class="snapshot-label"><span class="snapshot-dot learn-dot"></span><span>Skills I want to learn</span><span class="snapshot-count">{{ learn|length }}</span></div>
+          <div class="snapshot-pills mt-3">{% for s in learn %}<span class="skill-pill learn">{{ s.name }}</span>{% else %}<div class="snapshot-empty"><i class="bi bi-plus-circle me-2"></i>Add learning goals to find relevant student matches.</div>{% endfor %}</div>
+        </div>
+        <div class="snapshot-bottom"><i class="bi bi-info-circle me-2"></i>Keeping your skills up to date helps you find more relevant learning partners.</div>
+      </section>
+    </div>
+    <div class="col-lg-5">
+      <section class="dashboard-panel quick-panel h-100">
+        <div class="section-title-row"><div><span class="eyebrow">SHORTCUTS</span><h3>Quick actions</h3><p>Pick up right where you left off.</p></div><span class="quick-title-icon"><i class="bi bi-lightning-charge-fill"></i></span></div>
+        <a class="action-tile" href="{{ url_for('matches') }}"><span class="action-icon action-violet"><i class="bi bi-stars"></i></span><span class="action-copy"><strong>Find skill matches</strong><small>Discover students who can teach you</small></span><i class="bi bi-arrow-up-right action-arrow"></i></a>
+        <a class="action-tile" href="{{ url_for('profile') }}"><span class="action-icon action-sky"><i class="bi bi-person-gear"></i></span><span class="action-copy"><strong>Update my profile</strong><small>Keep your academic details current</small></span><i class="bi bi-arrow-up-right action-arrow"></i></a>
+        <a class="action-tile" href="{{ url_for('requests_page') }}"><span class="action-icon action-amber"><i class="bi bi-envelope-paper"></i></span><span class="action-copy"><strong>Manage requests</strong><small>Check requests and their status</small></span><i class="bi bi-arrow-up-right action-arrow"></i></a>
+        <a class="action-tile" href="{{ url_for('sessions_page') }}"><span class="action-icon action-green"><i class="bi bi-calendar2-check"></i></span><span class="action-copy"><strong>View learning sessions</strong><small>Keep track of planned sessions</small></span><i class="bi bi-arrow-up-right action-arrow"></i></a>
+        <div class="community-note"><span class="community-note-icon"><i class="bi bi-people-fill"></i></span><div><strong>Learning works both ways</strong><p>Teach one skill, learn another, and grow together.</p></div></div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock %}

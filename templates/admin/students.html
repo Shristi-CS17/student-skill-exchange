@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Students | Admin{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">ADMIN · STUDENTS</span><h1>Student Accounts</h1><p>Manage registered student accounts.</p></div><div class="panel table-responsive"><table class="table align-middle"><thead><tr><th>Student</th><th>Department</th><th>Year</th><th>Status</th><th>Action</th></tr></thead><tbody>{% for s in students %}<tr><td><strong>{{s.name}}</strong><div class="small text-muted">{{s.email}}</div></td><td>{{s.department}}</td><td>{{s.year}}</td><td>{% if s.is_blocked %}<span class="status rejected">Blocked</span>{% else %}<span class="status accepted">Active</span>{% endif %}</td><td><form method="post" action="{{url_for('admin_student_action',user_id=s.id,action='unblock' if s.is_blocked else 'block')}}"><button class="btn btn-sm btn-outline-dark">{{'Unblock' if s.is_blocked else 'Block'}}</button></form></td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}

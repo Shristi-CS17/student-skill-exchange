@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | SkillXchange{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">ADMINISTRATION</span><h1>Platform Overview</h1><p>Monitor students, skills, requests and learning activity.</p></div>
+<div class="row g-3 mb-4">{% for key,label,icon in [('students','Total Students','bi-people'),('active','Active Users','bi-person-check'),('skills','Total Skills','bi-lightbulb'),('requests','Learning Requests','bi-send'),('completed','Completed Sessions','bi-check2-circle')] %}<div class="col-md-4 col-lg"><div class="stat-card"><span>{{label}}</span><strong>{{stats[key]}}</strong><i class="bi {{icon}}"></i></div></div>{% endfor %}</div>
+<div class="row g-4"><div class="col-lg-8"><div class="panel"><div class="panel-head"><div><h5>Admin Controls</h5><p>Manage the core platform records.</p></div></div><div class="admin-grid"><a href="{{url_for('admin_students')}}"><i class="bi bi-people"></i><strong>Students</strong><span>View & manage accounts</span></a><a href="{{url_for('admin_skills')}}"><i class="bi bi-lightbulb"></i><strong>Skills</strong><span>View platform skills</span></a><a href="{{url_for('admin_requests')}}"><i class="bi bi-send"></i><strong>Requests</strong><span>Monitor learning requests</span></a><a href="{{url_for('admin_reviews')}}"><i class="bi bi-star"></i><strong>Reviews</strong><span>Moderate feedback</span></a></div></div></div>
+<div class="col-lg-4"><div class="panel"><h5>System Note</h5><p class="text-muted">This admin module is designed for academic demonstration and basic platform moderation.</p><div class="alert alert-light border mb-0"><i class="bi bi-info-circle"></i> Future scope: analytics charts, notifications and AI-based matching.</div></div></div></div>
+</div>
+{% endblock %}

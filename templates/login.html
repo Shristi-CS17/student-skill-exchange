@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Login | SkillXchange{% endblock %}
+{% block content %}
+<div class="auth-wrap"><div class="auth-card">
+<div class="text-center mb-4"><div class="auth-logo">S</div><h2>Welcome back</h2><p class="text-muted">Login to continue your learning journey.</p></div>
+<form method="post">
+<label class="form-label">Email</label><input class="form-control form-control-lg mb-3" type="email" name="email" required>
+<label class="form-label">Password</label><input class="form-control form-control-lg mb-4" type="password" name="password" required>
+<button class="btn btn-primary btn-lg w-100">Login <i class="bi bi-arrow-right"></i></button>
+</form>
+<div class="demo-box mt-4"><strong>Demo Student</strong><br>shristi@gmail.com / student123</div>
+<p class="text-center mt-4 mb-0">New here? <a href="{{ url_for('register') }}">Create an account</a></p>
+</div></div>
+{% endblock %}

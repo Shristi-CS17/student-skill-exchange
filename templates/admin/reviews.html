@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Reviews | Admin{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">ADMIN · REVIEWS</span><h1>Reviews & Ratings</h1><p>Monitor student feedback and platform reputation.</p></div><div class="panel">{% for r in reviews %}<div class="review-row"><div class="avatar">{{r.reviewer[:1]}}</div><div class="flex-grow-1"><strong>{{r.reviewer}}</strong> reviewed <strong>{{r.reviewee}}</strong><div class="text-warning my-1">{{'★' * r.rating}}{{'☆' * (5-r.rating)}}</div><p class="mb-0 text-muted">{{r.comment or 'No written comment.'}}</p></div><span class="skill-pill">{{r.skill}}</span></div>{% else %}<div class="empty-mini">No reviews yet.</div>{% endfor %}</div></div>
+{% endblock %}

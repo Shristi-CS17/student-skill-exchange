@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Requests | Admin{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="page-heading"><span class="eyebrow">ADMIN · REQUESTS</span><h1>Learning Requests</h1><p>Overview of peer-to-peer learning requests.</p></div><div class="panel table-responsive"><table class="table align-middle"><thead><tr><th>Learner</th><th>Teacher</th><th>Skill</th><th>Status</th></tr></thead><tbody>{% for r in requests %}<tr><td>{{r.learner}}</td><td>{{r.teacher}}</td><td><strong>{{r.skill}}</strong></td><td><span class="status {{r.status|lower}}">{{r.status}}</span></td></tr>{% endfor %}</tbody></table></div></div>
+{% endblock %}
