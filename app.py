@@ -454,6 +454,7 @@ def admin_reviews():
     conn.close()
     return render_template("admin/reviews.html",reviews=reviews)
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True)
